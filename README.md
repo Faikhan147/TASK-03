@@ -27,17 +27,13 @@ Start-Process -FilePath "bcdedit.exe" -ArgumentList "/enum" -NoNewWindow -PassTh
 
 Then, run:
 
-powershell
-Copy
-Edit
+
 wsl --set-default-version 2
 wsl --install -d Ubuntu-24.04
 wsl -d Ubuntu-24.04
 wsl -l -v
 🐳 Step 2: Install Docker in WSL (Ubuntu)
-bash
-Copy
-Edit
+
 sudo apt-get update
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
 
@@ -51,9 +47,7 @@ sudo systemctl enable docker
 sudo systemctl start docker
 sudo systemctl status docker
 🌍 Step 3: Install Terraform
-bash
-Copy
-Edit
+
 sudo apt update && sudo apt install -y gnupg software-properties-common curl
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
@@ -65,9 +59,7 @@ terraform -version
 📁 Step 4: Create Terraform Configuration
 Create a file named main.tf:
 
-hcl
-Copy
-Edit
+
 terraform {
   required_providers {
     docker = {
@@ -95,18 +87,13 @@ resource "docker_container" "nginx_container" {
 ⚙️ Step 5: Deploy Using Terraform
 Run the following commands:
 
-bash
-Copy
-Edit
 sudo terraform init             # Initialize Terraform
 sudo terraform plan             # (Optional) Preview the plan
 sudo terraform apply            # Apply and deploy container
 👉 Type yes when prompted.
 
 ✅ Step 6: Verify and Manage
-bash
-Copy
-Edit
+
 sudo docker ps                 # Check running Docker containers
 sudo terraform state list     # View Terraform-managed resources
 sudo terraform destroy        # Destroy resources
